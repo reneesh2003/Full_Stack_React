@@ -3,6 +3,9 @@ import {useNavigate,Link} from 'react-router-dom'
 import axios from 'axios'
 
 function Signup() {
+
+  const history=useNavigate()
+
     const [email,setEmail]=useState('')
     const [password,setPassword]=useState('')
     
@@ -10,8 +13,22 @@ function Signup() {
         e.preventDefault();
         
         try{
-            await axios.post("http://localhost:3000/signup",{
+            await axios.post("http://localhost:8000/signup",{
                 email,password
+            })
+            .then(res=>{
+              if(res.data==="exist"){
+                alert("User already exists")
+                
+              }
+              else if(res.data==="notexist"){
+                history("/home",{state:{id:email}})
+
+              }
+            })
+            .catch(e=>{
+              alert("wrong details")
+              console.log(e)
             })
         }
         catch(e){
@@ -21,42 +38,42 @@ function Signup() {
 
   return (
     <div>
-        <div class="container-fluid">
-            <div class="row">
-                <form id="myform" action="/register" method="post" class="row text-white text-center p-4">
-                    <div class="col-md-3 border border-dark bg-secondary p-2 m-2">Sign in using Existing Account</div>
-                    <button class="col-md-3 bg-primary p-2 m-2" >Register For A New Account</button>
+        <div className="container-fluid">
+            <div className="row">
+                <form id="myform" action="/register" method="post" className="row text-white text-center p-4">
+                    <div className="col-md-3 border border-dark bg-secondary p-2 m-2">Sign in using Existing Account</div>
+                    <button className="col-md-3 bg-primary p-2 m-2" >Register For A New Account</button>
                 </form>
             </div>
-        <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col-md-9 col-lg-6 col-xl-5 text-center">
-                <img src="./images/login.jfif" class="img-fluid" alt='login' ></img>
+        <div className="row d-flex justify-content-center align-items-center h-100">
+            <div className="col-md-9 col-lg-6 col-xl-5 text-center">
+                <img src="./images/login.jfif" className="img-fluid" alt='login' ></img>
             </div>
-        <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+        <div className="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
           <form action="/home" method="post">
-            <h5 class="text-center ">Login</h5>
-            <div class="form-outline mb-4">
-                <label for="email">Email</label>
-                <input class="form-control" type="email" onChange={(e)=>{setEmail(e.target.value)}} name="email" id="email" placeholder="Enter a valid E-mail " required /><br/>            
+            <h5 className="text-center ">Login</h5>
+            <div className="form-outline mb-4">
+                <label htmlFor="email">Email</label>
+                <input className="form-control" type="email" onChange={(e)=>{setEmail(e.target.value)}} name="email" id="email" placeholder="Enter a valid E-mail " required /><br/>            
             </div>
   
-            <div class="form-outline mb-3">
-              <label for="password">Password</label>
-              <input class="form-control" type="password" onChange={(e)=>{setPassword(e.target.value)}} name="password" id="password" placeholder="Enter your Password " required/><br/> 
+            <div className="form-outline mb-3">
+              <label htmlFor="password">Password</label>
+              <input className="form-control" type="password" onChange={(e)=>{setPassword(e.target.value)}} name="password" id="password" placeholder="Enter your Password " required/><br/> 
             </div>
   
-            <div class="d-flex justify-content-between align-items-center">
-                <div class="form-check mb-0">
-                <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
-                <label class="form-check-label" for="form2Example3">
+            <div className="d-flex justify-content-between align-items-center">
+                <div className="form-check mb-0">
+                <input className="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
+                <label className="form-check-label" htmlFor="form2Example3">
                   Remember me
                 </label>
                 </div>
             </div>
   
-            <div class="text-center text-lg-start mt-4 pt-2">
-            <input onClick={submit}  style={{paddingLeft: 2.5+'rem', paddingRight: 2.5+'rem;'}} type="submit" id="submitDetails" name="submitDetails" class="btn btn-primary btn-lg registerbtn" value="Login" />   <br/>
-            <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account?</p>
+            <div className="text-center text-lg-start mt-4 pt-2">
+            <input onClick={submit}  style={{paddingLeft: 2.5+'rem', paddingRight: 2.5+'rem'}} type="submit" id="submitDetails" name="submitDetails" className="btn btn-primary btn-lg registerbtn" value="Login" />   <br/>
+            <p className="small fw-bold mt-2 pt-1 mb-0">Don't have an account?</p>
             <Link to="/signup">Signup</Link>
                   <br/>
                   <br/>
@@ -66,22 +83,22 @@ function Signup() {
         </div>
       </div>
     </div>
-    <div style={{position:'absolute', bottom:'0', height: 120+'px', width: 100+'%'}} class="text-center bg-primary p-4">
-      <div class="text-white col mb-3 mb-md-0">
+    <div style={{position:'absolute', bottom:'0', height: 120+'px', width: 100+'%'}} className="text-center bg-primary p-4">
+      <div className="text-white col mb-3 mb-md-0">
         <p>Copyright © 2022.(Reneesh) - Full Stack React Project. All Rights Reserved</p>
       </div>
-      <div class="px-4">
-        <a href="#!" class="text-white me-sm-4">
-          <i class="fab fa-facebook-f"></i>
+      <div className="px-4">
+        <a href="#!" className="text-white me-sm-4">
+          <i className="fab fa-facebook-f"></i>
         </a>
-        <a href="#!" class="text-white me-sm-4">
-          <i class="fab fa-twitter"></i>
+        <a href="#!" className="text-white me-sm-4">
+          <i className="fab fa-twitter"></i>
         </a>
-        <a href="#!" class="text-white me-sm-4">
-          <i class="fab fa-google"></i>
+        <a href="#!" className="text-white me-sm-4">
+          <i className="fab fa-google"></i>
         </a>
-        <a href="#!" class="text-white me-sm-4">
-          <i class="fab fa-linkedin-in"></i>
+        <a href="#!" className="text-white me-sm-4">
+          <i className="fab fa-linkedin-in"></i>
         </a>
       </div>
     </div>
