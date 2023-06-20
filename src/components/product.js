@@ -12,7 +12,6 @@ function Product() {
             await axios.post("http://localhost:8000/home/product/checkout",{p:location.state.product})
             .then(res=>{
 				if(res){
-                console.log(res)
 				  history("/home/product/checkout",{state:res.data})
 				}})
             .catch(e=>{
@@ -47,16 +46,16 @@ function Product() {
 <p>Copyright © 2022.(Reneesh) - Full Stack React Project. All Rights Reserved</p>
 </div>
 <div className="px-4">
-<a disabled="#!" className="text-white me-sm-4">
+<a href="#!" className="text-white me-sm-4">
   <i className="fab fa-facebook-f"></i>
 </a>
-<a disabled="#!" className="text-white me-sm-4">
+<a href="#!" className="text-white me-sm-4">
   <i className="fab fa-twitter"></i>
 </a>
-<a disabled="#!" className="text-white me-sm-4">
+<a href="#!" className="text-white me-sm-4">
   <i className="fab fa-google"></i>
 </a>
-<a disabled="#!" className="text-white me-sm-4">
+<a href="#!" className="text-white me-sm-4">
   <i className="fab fa-linkedin-in"></i>
 </a>
 </div>

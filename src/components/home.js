@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
-import { useLocation,useNavigate,Link } from 'react-router-dom'
+import React from 'react'
+import { useLocation,useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
+import { CarouselProvider, Slider, Slide } from 'pure-react-carousel';
 import 'pure-react-carousel/dist/react-carousel.es.css';
 
 
@@ -66,9 +66,9 @@ function Home() {
         style={{height:500+'px',margin:20+'px'}}
       >
         <Slider style={{height:500+'px'}}>
-          <Slide index={0}><img src='../images/1.jpg' height={500} width={800}></img></Slide>
-          <Slide index={1}><img src='../images/2.jpg' height={500} width={800}/></Slide>
-          <Slide index={2}><img src='../images/3.jpg'height={500} width={800}/></Slide>
+          <Slide index={0}><img src='../images/1.jpg' alt='carousel1' height={500} width={800}></img></Slide>
+          <Slide index={1}><img src='../images/2.jpg' alt='carousel2' height={500} width={800}/></Slide>
+          <Slide index={2}><img src='../images/3.jpg' alt='carousel3' height={500} width={800}/></Slide>
         </Slider>
       </CarouselProvider>
       <div className="row d-flex justify-content-center align-items-center h-100 m-3">

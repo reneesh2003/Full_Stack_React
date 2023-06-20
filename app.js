@@ -13,7 +13,6 @@ app.get('/',cors(),(req,res)=>{
 app.post("/",async(req,res)=>{
     const{email,password}=req.body
     global.em=email
-    console.log(em)
     try{
         const check = await collection.findOne({email:email,password:password})
         if(check){
@@ -30,6 +29,7 @@ app.post("/",async(req,res)=>{
 
 app.post("/signup",async(req,res)=>{
     const{email,password,name,mno}=req.body
+    global.em=email
     const data={
         email:email,
         password:password,
@@ -63,12 +63,10 @@ app.post("/home/account",async(req,res)=>{
 
 app.post("/home/account/update",async(req,res)=>{
     const{password,name,mno}=req.body
-    console.log(name)
     try{
-    console.log(await collection.updateOne({ email:em}, { $set: {password:password,name:name,mno:mno }}))
+    await collection.updateOne({ email:em}, { $set: {password:password,name:name,mno:mno }})
     const check = await collection.findOne({email:em})
-    console.log(check)
-       res.json("updated")
+       res.json(check)
     }
     catch(e){
         res.json("error")
@@ -80,7 +78,6 @@ app.post("/home/product/checkout",async(req,res)=>{
     const{p}=req.body
     const check = await details.findOne({product:p})
     try{
-        console.log(p)
        res.json(check)
     }
     catch(e){
@@ -92,7 +89,6 @@ app.post("/home/product",async(req,res)=>{
     const{p}=req.body
     const check = await details.findOne({product:p})
     try{
-        console.log(check)
        res.json(check)
     }
     catch(e){
@@ -102,7 +98,6 @@ app.post("/home/product",async(req,res)=>{
 
 app.post("/home/product/donecheckout",async(req,res)=>{
     const{p,addr}=req.body
-    console.log(p,addr)
     const data={
         email:em,
         product:p,
@@ -111,7 +106,6 @@ app.post("/home/product/donecheckout",async(req,res)=>{
     orders.insertMany([data])
     const check = await collection.findOne({email:em})
     try{
-        console.log(check)
        res.json(check)
     }
     catch(e){

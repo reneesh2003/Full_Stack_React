@@ -11,19 +11,16 @@ function Login() {
     
     async function submit(e){
         e.preventDefault();
-        
         try{
             await axios.post("http://localhost:8000/",{
                 email,password
             })
             .then(res=>{
-              console.log(res.data.email)
               if(res.data["email"]){
                 history("/home",{state:res.data})
               }
               else if(res.data==="notexist"){
                 alert("User have not signed up")
-
               }
             })
             .catch(e=>{

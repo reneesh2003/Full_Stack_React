@@ -17,10 +17,9 @@ function Checkout() {
         e.preventDefault()
         try{
             console.log(location.state.product)
-            await axios.post("http://localhost:8000/home/product/donecheckout",{p:location.state.product,addr})
+            await axios.post("http://localhost:8000/home/product/donecheckout",{p:location.state.product,addr,cardno,cardname,valid,cvv})
             .then(res=>{
 				if(res){
-                    console.log(res)
 				  history("/home",{state:res.data})
 				}})
             .catch(e=>{
@@ -61,16 +60,16 @@ function Checkout() {
 <p>Copyright © 2022.(Reneesh) - Full Stack React Project. All Rights Reserved</p>
 </div>
 <div className="px-4">
-<a disabled="#!" className="text-white me-sm-4">
+<a href="#!" className="text-white me-sm-4">
   <i className="fab fa-facebook-f"></i>
 </a>
-<a disabled="#!" className="text-white me-sm-4">
+<a href="#!" className="text-white me-sm-4">
   <i className="fab fa-twitter"></i>
 </a>
-<a disabled="#!" className="text-white me-sm-4">
+<a href="#!" className="text-white me-sm-4">
   <i className="fab fa-google"></i>
 </a>
-<a disabled="#!" className="text-white me-sm-4">
+<a href="#!" className="text-white me-sm-4">
   <i className="fab fa-linkedin-in"></i>
 </a>
 </div>
