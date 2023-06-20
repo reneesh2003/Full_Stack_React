@@ -48,7 +48,7 @@ function Signup() {
                 <img src="./images/login.jfif" className="img-fluid" alt='login' ></img>
             </div>
         <div className="col-md-8 col-lg-6 col-xl-4 offset-xl-1" style={{height:800+'px'}}>
-          <form action="/home" method="post">
+          <form >
             <h5 className="text-center ">Login</h5>
             <div className="form-outline mb-4">
                 <label htmlFor="name">Name</label>

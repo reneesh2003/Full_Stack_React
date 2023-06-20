@@ -1,5 +1,6 @@
 const express = require("express")
-const collection =require("./mongo.js")
+const {details ,collection,orders} = require("./mongo.js")
+
 const cors = require('cors')
 const e = require("cors")
 const app = express()
@@ -68,6 +69,50 @@ app.post("/home/account/update",async(req,res)=>{
     const check = await collection.findOne({email:em})
     console.log(check)
        res.json("updated")
+    }
+    catch(e){
+        res.json("error")
+    }
+})
+
+
+app.post("/home/product/checkout",async(req,res)=>{
+    const{p}=req.body
+    const check = await details.findOne({product:p})
+    try{
+        console.log(p)
+       res.json(check)
+    }
+    catch(e){
+        res.json("error")
+    }
+})
+
+app.post("/home/product",async(req,res)=>{
+    const{p}=req.body
+    const check = await details.findOne({product:p})
+    try{
+        console.log(check)
+       res.json(check)
+    }
+    catch(e){
+        res.json("error")
+    }
+})
+
+app.post("/home/product/donecheckout",async(req,res)=>{
+    const{p,addr}=req.body
+    console.log(p,addr)
+    const data={
+        email:em,
+        product:p,
+        address:addr
+    }
+    orders.insertMany([data])
+    const check = await collection.findOne({email:em})
+    try{
+        console.log(check)
+       res.json(check)
     }
     catch(e){
         res.json("error")
